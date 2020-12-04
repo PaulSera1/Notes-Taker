@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="static/css/home.css">
+{% endblock %}
+
+{% block content %}
+<script src="static/js/home.js"></script>
+<h1 id="homepage">Welcome to the Home Page!</h1>
+<br/>
+{% if user.is_authenticated %}
+<div id="greet">
+  Hi {{ user.username }}!
+  <br/>
+  <a href="{% url 'logout' %}">Log Out</a>
+</div>
+  <div class="left-half">
+      <div id="notebar">
+        {% for note in notes %}
+          <button class="note-opener" id="open-{{ note.id }}">{{ note.title }}</button>
+        {% endfor %}
+      </div>
+      <div id="form-container">
+        <h4 style="display: block; color: blue; font-family: 'Courier New', Courier, monospace">Create New Note:</h4>
+        <form id='noteform' action="/post/ajax/note" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input id="createnote" type="submit" value="Create">
+        </form>
+      </div>
+  </div>
+    <div class="right-half">
+      <div id="notelist">
+        <!--<button id="mod">Reveal Notes</button>-->
+        {% for note in notes %}
+            <div id="{{ note.id }}" class="co">
+              <div class="head">
+                <span class="close">&times;</span>
+                <h2>{{ note.title }}</h2>
+                <p>by {{ note.author }}</p>
+              </div>
+              <div class="body">
+                <p>{{ note.body }}</p>
+              </div>
+              <div class="footer">
+                <h3>{{ note.date_created }}</h3>
+                <button class="delete-button" id="delete-{{ note.id }}">Delete Permanently?</button>
+              </div>
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+{% else %}
+  <h1 id="message">You are not logged in</h1>
+  <div id="choices">
+    <span style="font-family: 'Courier New', Courier, monospace;">
+      <a href="{% url 'login' %}">Log In</a>
+    </span>
+    <span style="font-family: 'Courier New', Courier, monospace;">
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </span>
+  </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,61 @@
+#login-title {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white;
+    background-color: blue;
+    margin-top: none;
+}
+
+form {
+    width: 500px;
+    padding: 20px;
+    margin: auto;
+    z-index: 10;
+    border: 1px solid blue;
+    margin-top: 150px;
+}
+
+form p {
+    font-family: 'Courier New', Courier, monospace;
+    color: blue;
+}
+
+input[type=text], input[type=password] {
+    border: 2px solid blue;
+    border-radius: 4px; 
+    width: 96.5%;
+    margin-top: 10px;
+    color: darkslategray;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 7px;
+}
+
+button[type=submit] {
+    width: 50%;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: blue;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#button-container {
+    text-align: center;
+}
+
+#back {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.errorlist {
+    list-style-type: none;
+}
+
+.errorlist li {
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+}
